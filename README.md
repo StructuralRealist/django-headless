@@ -2,7 +2,7 @@
 
 [![PyPI version](https://badge.fury.io/py/django-headless.svg)](https://badge.fury.io/py/django-headless)
 [![Python versions](https://img.shields.io/pypi/pyversions/django-headless.svg)](https://pypi.org/project/django-headless/)
-[![Django versions](https://img.shields.io/badge/django-3.10%2B-blue.svg)](https://www.djangoproject.com/)
+[![Django versions](https://img.shields.io/badge/django-5.0%2B-blue.svg)](https://www.djangoproject.com/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 With Django Headless you quickly create a REST API for your models, making it easy to turn Django into a powerful headless CMS.
@@ -19,7 +19,7 @@ With Django Headless you quickly create a REST API for your models, making it ea
 
 ### Installation
 
-Django Headless depends on Django and Django Rest Framework.
+☝️ Django Headless depends on Django and Django Rest Framework.
 
 ```bash
 pip install django-headless
@@ -101,6 +101,7 @@ class Article(models.Model):
 - `POST /api/article/` - Create new article
 - `GET /api/article/{id}/` - Retrieve specific article
 - `PUT /api/article/{id}/` - Update article
+- `PATCH /api/article/{id}/` - Partially update article
 - `DELETE /api/article/{id}/` - Delete article
 
 ### Singleton Models

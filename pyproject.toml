@@ -1,6 +1,6 @@
 [project]
 name = "django-headless"
-version = "0.1.0"
+version = "1.0.0-beta.1"
 description = "Automagically create a REST API for you Django models"
 authors = [
     {name = "Leon van der Grient",email = "leon@devtastic.io"}

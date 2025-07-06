@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 
 from rich.console import Console
@@ -32,3 +33,21 @@ def is_runserver():
 
 def flatten(xss):
     return [x for xs in xss for x in xs]
+
+
+def camel_to_kebab(text: str) -> str:
+    """
+    Simpler function that handles basic PascalCase/camelCase conversion.
+
+    Args:
+        text (str): The input string in PascalCase or camelCase
+
+    Returns:
+        str: The converted string in kebab-case
+    """
+    if not text:
+        return text
+
+    # Insert hyphen before any uppercase letter that follows a lowercase letter
+    result = re.sub(r"([a-z])([A-Z])", r"\1-\2", text)
+    return result.lower()

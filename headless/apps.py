@@ -22,5 +22,6 @@ class DjangoHeadlessConfig(AppConfig):
                 ":white_check_mark:",
                 f"[green]Found {len(headless_registry)} registered models:[/green]",
             )
-            for model in headless_registry.get_models().values():
-                print(f"   - {model._meta.verbose_name} ({model.__class__.__name__})")
+            for model_config in headless_registry.get_models():
+                model = model_config["model"]
+                print(f"   - {model._meta.verbose_name} ({model.__name__})")

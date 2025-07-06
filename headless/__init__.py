@@ -1,7 +1,7 @@
 __title__ = "Django Headless"
-__version__ = "1.0.0-canary.1"
+__version__ = "1.0.0-beta.1"
 __author__ = "Leon van der Grient"
-__license__ = "BSD 3-Clause"
+__license__ = "MIT"
 
 from typing import Type
 
@@ -12,7 +12,7 @@ from .registry import headless_registry
 VERSION = __version__
 
 
-def headless(singleton = False):
+def headless(singleton=False):
     """
     Decorator to register a Django model to a registry.
 
