@@ -14,7 +14,6 @@ class DjangoHeadlessRestConfig(AppConfig):
         from ..registry import headless_registry
         from ..utils import log
         from .routers import rest_router
-        from .urls import urlpatterns
         from .viewsets import SingletonViewSet
 
         if is_runserver():
@@ -34,15 +33,18 @@ class DjangoHeadlessRestConfig(AppConfig):
                 if singleton:
 
                     class ViewSet(SingletonViewSet):
-                        queryset = model_class.objects.first()
+                        queryset = model_class.objects.none()
                         serializer_class = Serializer
+
+                        def get_queryset(self):
+                            return model_class.objects.all()[:1]
 
                     log("   ---", f"{model_class._meta.verbose_name}")
                     log("     |---", f"GET /{base_path}")
                     log("     |---", f"PUT /{base_path}")
                     log("     |---", f"PATCH /{base_path}")
                     log("\n")
-                    urlpatterns.append(
+                    rest_router.urls.append(
                         path(
                             base_path,
                             ViewSet.as_view(
