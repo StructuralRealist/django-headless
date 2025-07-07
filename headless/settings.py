@@ -28,6 +28,8 @@ DEFAULTS = {
         "expand",
     ],
     "FILTER_EXCLUSION_SYMBOL": "~",
+    "AUTH_SECRET_KEY_HEADER": "X-Secret-Key",
+    "AUTH_SECRET_KEY": None,
 }
 
 

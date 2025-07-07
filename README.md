@@ -9,7 +9,7 @@ With Django Headless you quickly create a REST API for your models, making it ea
 
 ## ✨ Features
 
-- **🎯 Zero configuration**: Add `@headless` decorator to any model and get instant REST endpoints
+- **🎯 Easy configuration**: Add `@headless` decorator to any model and get instant REST endpoints
 - **🤝 Plays nice**: Seamlessly integrates with existing Django applications
 - **💈 Supports singletons**: Special handling for singleton models (settings, configurations, etc.)
 - **🔍 Flexible filtering**: Optional filtering backend based on Django ORM lookups
@@ -41,10 +41,14 @@ INSTALLED_APPS = [
     # ... your apps
 ]
 
-# Optional: add the lookup filter backend
 REST_FRAMEWORK = {
+    # Optional: add the lookup filter backend
     "DEFAULT_FILTER_BACKENDS": [
         "headless.rest.filters.LookupFilter",
+    #...
+    # Optional: add the secret key authentication class
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "headless.rest.authentication.SecretKeyAuthentication",
     #... other DRF config
 }
 ```
@@ -170,6 +174,9 @@ The `@headless` decorator accepts the following configuration options:
 ```python
 # settings.py
 HEADLESS =  {
+    "AUTH_SECRET_KEY": None,
+    "AUTH_SECRET_KEY_HEADER": "X-Secret-Key",
+    "FILTER_EXCLUSION_SYMBOL": "~",
     "NON_FILTER_FIELDS": [
         "search",
         "limit",
@@ -178,7 +185,7 @@ HEADLESS =  {
         "exclude",
         "expand",
     ],
-    "FILTER_EXCLUSION_SYMBOL": "~",
+
 }
 ```
 
