@@ -19,6 +19,10 @@ from django.utils.module_loading import import_string
 SETTINGS_NAMESPACE = "HEADLESS"
 
 DEFAULTS = {
+    "AUTH_SECRET_KEY": None,
+    "AUTH_SECRET_KEY_HEADER": "X-Secret-Key",
+    "DEFAULT_SERIALIZER_CLASS": "rest_framework.serializers.ModelSerializer",
+    "FILTER_EXCLUSION_SYMBOL": "~",
     "NON_FILTER_FIELDS": [
         "search",
         "limit",
@@ -27,14 +31,11 @@ DEFAULTS = {
         "exclude",
         "expand",
     ],
-    "FILTER_EXCLUSION_SYMBOL": "~",
-    "AUTH_SECRET_KEY_HEADER": "X-Secret-Key",
-    "AUTH_SECRET_KEY": None,
 }
 
 
 # List of settings that may be in string import notation.
-IMPORT_STRINGS = []
+IMPORT_STRINGS = ["DEFAULT_SERIALIZER_CLASS"]
 
 
 # List of settings that have been removed

@@ -1,5 +1,5 @@
 __title__ = "Django Headless"
-__version__ = "1.0.0-beta.2"
+__version__ = "1.0.0-beta.3"
 __author__ = "Leon van der Grient"
 __license__ = "MIT"
 
