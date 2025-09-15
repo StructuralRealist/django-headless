@@ -4,7 +4,8 @@ from django.db.models import Model
 from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import serializers
 
-from headless.settings import headless_settings
+from ..registry import headless_registry
+from ..settings import headless_settings
 
 
 class FlexibleSerializer(FlexFieldsModelSerializer):
@@ -50,10 +51,15 @@ class FlexibleSerializer(FlexFieldsModelSerializer):
         ]
 
         for field in relational_fields:
+            related_model = field.related_model
+
+            # Do not expand if model is not in registry
+            if not headless_registry.get_model(related_model._meta.label):
+                continue
 
             class Serializer(headless_settings.DEFAULT_SERIALIZER_CLASS):
                 class Meta:
-                    model = field.related_model
+                    model = related_model
                     fields = "__all__"
 
             is_many = field.many_to_many or field.one_to_many

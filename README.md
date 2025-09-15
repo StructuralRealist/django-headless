@@ -9,7 +9,7 @@ With Django Headless you quickly create a REST API for your models, making it ea
 
 ## ✨ Features
 
-- **🎯 Easy configuration**: Add `@headless` decorator to any model and get instant REST endpoints
+- **🎯 Easy configuration**: Add `@register` decorator to any model and get instant REST endpoints
 - **🤝 Plays nice**: Seamlessly integrates with existing Django applications
 - **💈 Supports singletons**: Special handling for singleton models (settings, configurations, etc.)
 - **🔍 Flexible filtering**: Optional filtering backend based on Django ORM lookups
@@ -58,9 +58,9 @@ REST_FRAMEWORK = {
 ```python
 # models.py
 from django.db import models
-from headless import headless
+from headless import register
 
-@headless()
+@register()
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -91,9 +91,9 @@ That's it! 🎉 Your model is now available via REST API at `/api/blog-post/`
 ### Basic Model Registration
 
 ```python
-from headless import headless
+from headless import register
 
-@headless()
+@register()
 class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -113,7 +113,7 @@ class Article(models.Model):
 Perfect for site settings, configurations, or any model that should have only one instance:
 
 ```python
-@headless(singleton=True)
+@register(singleton=True)
 class SiteConfiguration(models.Model):
     site_name = models.CharField(max_length=100)
     maintenance_mode = models.BooleanField(default=False)
@@ -161,7 +161,7 @@ as `true`, `1` or `on` (and `false`, `0` or `off`). Multi-value lookups can be c
 
 ## 🎛️ Configuration Options
 
-The `@headless` decorator accepts the following configuration options:
+The `@register` decorator accepts the following configuration options:
 
 | Option | Type | Default | Description                                                        |
 |--------|------|---------|--------------------------------------------------------------------|

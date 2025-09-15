@@ -12,3 +12,7 @@ Initial pre-release! 🎉
 - 🧹 Refactor REST builder logic
 - 🎁 Adds a new flexible serializer
 - ⚙️ The default serializer can now be changed via `HEADLESS.DEFAULT_SERIALIZER`
+
+## v1.0.0-beta.4
+
+- 🧹 Rename headless decorator to `register` in line with Django admin
