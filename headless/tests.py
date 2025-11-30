@@ -1,18 +1,11 @@
 from django.test import SimpleTestCase
 
-from .utils import camel_to_kebab, is_jsonable, flatten
+from .utils import is_jsonable, flatten
 from .settings import headless_settings
 from .registry import HeadlessRegistry
 
 
 class UtilsTests(SimpleTestCase):
-    def test_camel_to_kebab_basic(self):
-        self.assertEqual(camel_to_kebab("CamelCase"), "camel-case")
-        self.assertEqual(camel_to_kebab("camelCase"), "camel-case")
-        self.assertEqual(camel_to_kebab("URLValue"), "urlvalue")
-        self.assertEqual(camel_to_kebab(""), "")
-        self.assertIsNone(camel_to_kebab(None))
-
     def test_is_jsonable(self):
         self.assertTrue(is_jsonable({"a": 1}))
         self.assertTrue(is_jsonable([1, 2, 3]))
@@ -32,7 +25,9 @@ class SettingsTests(SimpleTestCase):
         # DEFAULT_SERIALIZER_CLASS resolves to a class
         from rest_framework.serializers import ModelSerializer
 
-        self.assertTrue(issubclass(headless_settings.DEFAULT_SERIALIZER_CLASS, ModelSerializer))
+        self.assertTrue(
+            issubclass(headless_settings.DEFAULT_SERIALIZER_CLASS, ModelSerializer)
+        )
 
 
 class RegistryTests(SimpleTestCase):

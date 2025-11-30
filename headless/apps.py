@@ -17,10 +17,9 @@ class DjangoHeadlessConfig(AppConfig):
             log("Django Headless")
             log(f"Version {VERSION}")
             log("----------------------------------------")
-            log(":mag:", "Registering models...")
             log(
                 ":white_check_mark:",
-                f"[green]Found {len(headless_registry)} registered models:[/green]",
+                f"[green]Found {len(headless_registry)} exposed models:[/green]",
             )
             for model_config in headless_registry.get_models():
                 model = model_config["model"]

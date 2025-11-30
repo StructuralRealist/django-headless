@@ -31,7 +31,7 @@ class SingletonViewSet(
         Get the first object of the queryset (assuming there is only one object).
         If a singleton doesn't exist, it will raise a NotFound exception.
         """
-        obj = self.get_queryset().first()
+        obj = self.get_queryset()
 
         if not obj:
             raise NotFound()

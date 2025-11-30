@@ -30,6 +30,7 @@ DEFAULTS = {
         "fields",
         "exclude",
         "expand",
+        "ordering",
     ],
 }
 
