@@ -22,3 +22,8 @@ Initial pre-release! 🎉
 - 🧹 Rename headless decorator to `expose` for better display of intent
 - 🎁 Add pagination class
 - 👾 Fixes issue with singleton routes not being registered
+- 
+## v1.0.0-beta.6
+
+- 🎁 Add `search_fields` setting
+- 👾 Bugfixes

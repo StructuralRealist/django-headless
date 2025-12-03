@@ -56,9 +56,9 @@ REST_FRAMEWORK = {
 ### Create Your First Headless Model
 
 ```python
-# models.py
+# apps/blog/models.py
 from django.db import models
-from headless import register
+from headless import expose
 
 @expose()
 class BlogPost(models.Model):
@@ -84,35 +84,41 @@ urlpatterns = [
 ]
 ```
 
-That's it! 🎉 Your model is now available via REST API at `/api/blog-post/`
+That's it! 🎉 Your model is now available via REST API at `/api/blog.blogpost/`
 
 ## 📖 Usage Examples
 
 ### Basic Model Registration
 
 ```python
-from headless import register
+# apps/blog/models.py
+from django.db import models
+from headless import expose
 
 @expose()
 class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey("user.User", on_delete=models.CASCADE)
 ```
 
 **Generated endpoints:**
-- `GET /api/article/` - List all articles
-- `POST /api/article/` - Create new article
-- `GET /api/article/{id}/` - Retrieve specific article
-- `PUT /api/article/{id}/` - Update article
-- `PATCH /api/article/{id}/` - Partially update article
-- `DELETE /api/article/{id}/` - Delete article
+- `GET /api/blog.article/` - List all articles
+- `POST /api/blog.article/` - Create new article
+- `GET /api/blog.article/{id}/` - Retrieve specific article
+- `PUT /api/blog.article/{id}/` - Update article
+- `PATCH /api/blog.article/{id}/` - Partially update article
+- `DELETE /api/blog.article/{id}/` - Delete article
 
 ### Singleton Models
 
 Perfect for site settings, configurations, or any model that should have only one instance:
 
 ```python
+# apps/config/models.py
+from django.db import models
+from headless import expose
+
 @expose(singleton=True)
 class SiteConfiguration(models.Model):
     site_name = models.CharField(max_length=100)
@@ -124,9 +130,9 @@ class SiteConfiguration(models.Model):
 ```
 
 **Generated endpoints:**
-- `GET /api/site-configuration/` - Get configuration
-- `PUT /api/site-configuration/` - Update configuration
-- `PATCH /api/site-configuration/` - Partial update
+- `GET /api/config.siteconfiguration/` - Get configuration
+- `PUT /api/config.siteconfiguration/` - Update configuration
+- `PATCH /api/config.siteconfiguration/` - Partial update
 
 ### Advanced Filtering
 
@@ -144,15 +150,15 @@ REST_FRAMEWORK = {
 **Filter examples:**
 ```bash
 # Basic filtering
-GET /api/blogpost/?published=true
+GET /api/blog.blogpost/?published=true
 
 # Field lookups
-GET /api/blogpost/?title__icontains=django
-GET /api/blogpost/?created_at__gte=2023-01-01
-GET /api/blogpost/?author__username=john
+GET /api/blog.blogpost/?title__icontains=django
+GET /api/blog.blogpost/?created_at__gte=2023-01-01
+GET /api/blog.blogpost/?author__username=john
 
 # Multiple filters
-GET /api/blogpost/?published=true&created_at__year=2023
+GET /api/blog.blogpost/?published=true&created_at__year=2023
 ```
 
 Values are automatically cast based on the field type. Booleans can be represented
@@ -183,8 +189,9 @@ HEADLESS =  {
         "limit",
         "page",
         "fields",
-        "exclude",
+        "omit",
         "expand",
+        "ordering"
     ],
 
 }
@@ -213,7 +220,7 @@ We welcome contributions! Here's how to get started:
 
 ```bash
 # Clone the repository
-git clone https://github.com/StructuralRealist/django-headless.git
+git clone https://github.com/BitsOfAbstraction/django-headless.git
 cd django-headless
 
 # Create virtual environment
@@ -238,8 +245,8 @@ For detailed documentation, visit [djangoheadless.org](https://djangoheadless.or
 
 ## 🐛 Issues & Support
 
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/StructuralRealist/django-headless/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/StructuralRealist/django-headless/discussions)
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/BitsOfAbstraction/django-headless/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/BitsOfAbstraction/django-headless/discussions)
 - 📧 **Email**: leon@devtastic.io
 
 ## 📄 License
