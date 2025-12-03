@@ -163,9 +163,10 @@ as `true`, `1` or `on` (and `false`, `0` or `off`). Multi-value lookups can be c
 
 The `@expose` decorator accepts the following configuration options:
 
-| Option | Type | Default | Description                                                        |
-|--------|------|---------|--------------------------------------------------------------------|
-| `singleton` | `bool` | `False` | Creates singleton endpoints (no create, list and delete endpoints) |
+| Option          | Type        | Default                    | Description                                                        |
+|-----------------|-------------|----------------------------|--------------------------------------------------------------------|
+| `singleton`     | `bool`      | `False`                    | Creates singleton endpoints (no create, list and delete endpoints) |
+| `search_fields` | `List[str]` | All the model's CharFields | Allows you to overwrite the allowed search fields.                 |
 
 
 
@@ -255,7 +256,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [PyPI Package](https://pypi.org/project/django-headless/)
 - [Documentation](https:/djangoheadless.org)
-- [GitHub Repository](https://github.com/StructuralRealist/django-headless)
+- [GitHub Repository](https://github.com/BitsOfAbstraction/django-headless)
 - [Changelog](CHANGELOG.md)
 
 ---

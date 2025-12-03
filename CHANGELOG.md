@@ -16,3 +16,9 @@ Initial pre-release! 🎉
 ## v1.0.0-beta.4
 
 - 🧹 Rename headless decorator to `register` in line with Django admin
+- 
+## v1.0.0-beta.5
+
+- 🧹 Rename headless decorator to `expose` for better display of intent
+- 🎁 Add pagination class
+- 👾 Fixes issue with singleton routes not being registered

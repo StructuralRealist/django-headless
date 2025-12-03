@@ -12,7 +12,7 @@ from .registry import headless_registry
 VERSION = __version__
 
 
-def expose(singleton=False):
+def expose(singleton=False, search_fields=None):
     """
     Decorator to register a Django model to the headless registry.
 
@@ -23,12 +23,16 @@ def expose(singleton=False):
     """
 
     def decorator(model_class: Type[models.Model]):
-        headless_registry.register(model_class, singleton=singleton)
+        headless_registry.register(
+            model_class, singleton=singleton, search_fields=search_fields
+        )
 
         return model_class
 
     return decorator
 
 
-def expose_model(model_class: Type[models.Model], singleton=False):
-    headless_registry.register(model_class, singleton=singleton)
+def expose_model(model_class: Type[models.Model], singleton=False, search_fields=None):
+    headless_registry.register(
+        model_class, singleton=singleton, search_fields=search_fields
+    )

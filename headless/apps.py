@@ -23,4 +23,4 @@ class DjangoHeadlessConfig(AppConfig):
             )
             for model_config in headless_registry.get_models():
                 model = model_config["model"]
-                print(f"   - {model._meta.verbose_name} ({model.__name__})")
+                print(f"   - {model._meta.verbose_name} ({model._meta.label_lower})")

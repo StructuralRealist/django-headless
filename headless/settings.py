@@ -28,7 +28,7 @@ DEFAULTS = {
         "limit",
         "page",
         "fields",
-        "exclude",
+        "omit",
         "expand",
         "ordering",
     ],

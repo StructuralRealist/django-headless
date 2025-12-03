@@ -5,7 +5,6 @@ from rest_framework.response import Response
 class PageNumberPagination(BasePageNumberPagination):
     page_query_param = "page"
     page_size_query_param = "limit"
-    max_page_size = 1000
 
     def get_paginated_response(self, data):
         absolute_uri = self.request.build_absolute_uri()

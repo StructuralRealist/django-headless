@@ -86,5 +86,6 @@ class RestBuilder:
             class ViewSet(ModelViewSet):
                 queryset = model_class.objects.all()
                 serializer_class = serializer
+                search_fields = model_config["search_fields"]
 
         return ViewSet
